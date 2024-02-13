@@ -177,6 +177,7 @@
             this.Controls.Add(this.lblBuscar);
             this.Name = "frmCatalogo";
             this.Text = "Catálogo";
+            this.Load += new System.EventHandler(this.frmCatalogo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
