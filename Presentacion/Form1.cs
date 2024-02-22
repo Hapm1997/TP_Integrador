@@ -14,7 +14,6 @@ namespace Presentacion
 {
     public partial class frmCatalogo : Form
     {
-        private List<Articulo> listaArticulo;
         public frmCatalogo()
         {
             InitializeComponent();
@@ -22,22 +21,8 @@ namespace Presentacion
 
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
-            cargar();
-        }
-        private void cargar()
-        {
-            CatalogoNegocio negocio = new CatalogoNegocio();
-            try
-            {
-                listaArticulo = negocio.articuloLista();
-                dataGridView1.DataSource = listaArticulo;
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            CatalogoNegocio catalogoNegocio = new CatalogoNegocio();
+            dgv1.DataSource = catalogoNegocio.articuloLista();
         }
     }
 }
