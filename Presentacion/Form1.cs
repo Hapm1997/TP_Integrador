@@ -34,12 +34,39 @@ namespace Presentacion
             {
                 articuloLista = negocio.articuloLista();
                 dgv1.DataSource = articuloLista;
+                ocultarColumnas();
+                cargarImagen(articuloLista[0].UrlArticulo);
 
             }
             catch (Exception ex)
             {
 
                 MessageBox.Show(ex.ToString());
+            }
+        }
+        private void ocultarColumnas()
+        {
+            //dgv1.Columns["UrlArticulo"].Visible = false;
+            dgv1.Columns["IdArticulo"].Visible = false;
+        }
+        private void cargarImagen(string url)
+        {
+            try
+            {
+                pictureBox1.Load(url);
+            }
+            catch (Exception ex)
+            {
+                pictureBox1.Load("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png");
+            }
+        }
+
+        private void dgv1_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgv1.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+                cargarImagen(seleccionado.UrlArticulo);
             }
         }
     }

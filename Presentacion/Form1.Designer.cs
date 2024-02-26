@@ -119,8 +119,10 @@
             this.dgv1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv1.Location = new System.Drawing.Point(16, 62);
             this.dgv1.Name = "dgv1";
+            this.dgv1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv1.Size = new System.Drawing.Size(537, 260);
             this.dgv1.TabIndex = 7;
+            this.dgv1.SelectionChanged += new System.EventHandler(this.dgv1_SelectionChanged);
             // 
             // btnAgregar
             // 
