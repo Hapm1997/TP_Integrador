@@ -46,7 +46,7 @@ namespace Presentacion
         }
         private void ocultarColumnas()
         {
-            //dgv1.Columns["UrlArticulo"].Visible = false;
+            dgv1.Columns["UrlArticulo"].Visible = false;
             dgv1.Columns["IdArticulo"].Visible = false;
         }
         private void cargarImagen(string url)
@@ -68,6 +68,22 @@ namespace Presentacion
                 Articulo seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
                 cargarImagen(seleccionado.UrlArticulo);
             }
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            AgregarFrm agregar = new AgregarFrm();
+            agregar.ShowDialog();
+            cargar();
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado;
+            seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+            AgregarFrm modificar = new AgregarFrm(seleccionado);
+            modificar.ShowDialog();
+            cargar();
         }
     }
 }
