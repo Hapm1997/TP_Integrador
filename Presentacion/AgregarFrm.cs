@@ -35,17 +35,18 @@ namespace Presentacion
         private void AgregarFrm_Load(object sender, EventArgs e)
         {
             CategoriaNegocio categoriaNeg = new CategoriaNegocio();
-            //MarcaNegocio marcaNegocio = new MarcaNegocio();
+            MarcaNegocio marcNegocio = new MarcaNegocio();
             try
             {
                 cbxCateg.DataSource = categoriaNeg.listaCategoria();
-                //cbxMarca.DataSource = marcaNegocio.listaMarca();
-                //cbxCateg.DataSource = categoriaNeg.listaCategoria();
-                //cbxCateg.ValueMember = "Id";
-                //cbxCateg.DisplayMember = "Categoria";
-                //cbxMarca.DataSource = marcaNegocio.listaMarca();
-                //cbxMarca.ValueMember = "Id";
-                //cbxMarca.DisplayMember = "Marca";
+                cbxMarca.DataSource = marcNegocio.listaMarca();
+
+                cbxCateg.DataSource = categoriaNeg.listaCategoria();
+                cbxCateg.ValueMember = "IdCategoria";
+                cbxCateg.DisplayMember = "DescripcionCategoria";
+                cbxMarca.DataSource = marcNegocio.listaMarca();
+                cbxMarca.ValueMember = "IdMarca";
+                cbxMarca.DisplayMember = "DescripcionMarca";
 
                 if (articulo != null)
                 {
@@ -55,8 +56,10 @@ namespace Presentacion
                     txtDesc.Text = articulo.DescripcionArticulo.ToString();
                     txtUrl.Text = articulo.UrlArticulo.ToString();
                     cargarImagen(articulo.UrlArticulo);
-                    //cbxCateg.SelectedValue = articulo.DescripcionCategoriaArticulo.IdCategoria;
-                    //cbxMarca.SelectedValue = articulo.DescripcionMarcaArticulo.IdMarca;
+
+                    cbxCateg.SelectedValue = articulo.DescripcionCategoriaArticulo.IdCategoria;
+                    cbxMarca.SelectedValue = articulo.DescripcionMarcaArticulo.IdMarca;
+
                     txtPrecio.Text = articulo.PrecioArticulo.ToString();
 
                 }
