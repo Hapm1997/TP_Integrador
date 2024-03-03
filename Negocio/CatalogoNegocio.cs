@@ -61,8 +61,59 @@ namespace Negocio
             finally
             {
                 datos.cerrarConexion();
-            }           
+            }            
         }
+        public void modificar(Articulo art)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("update ARTICULOS set  Codigo = @codigo , Nombre = @nombre , Descripcion = @desc , IdMarca = @idMarca , IdCategoria = @categ , ImagenUrl = @url , Precio = @precio where Id = @id");
+                datos.setearParametro("@codigo" , art.CodigoArticulo);
+                datos.setearParametro("@nombre" , art.NombreArticulo);
+                datos.setearParametro("@desc", art.DescripcionArticulo);
+                datos.setearParametro("@idMarca", art.DescripcionMarcaArticulo.IdMarca);
+                datos.setearParametro("@categ" , art.DescripcionCategoriaArticulo.IdCategoria);
+                datos.setearParametro("@url", art.UrlArticulo);
+                datos.setearParametro("@precio", art.PrecioArticulo);
+                datos.setearParametro("@id", art.IdArticulo);
 
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+         public void agregar (Articulo art) 
+         {
+                AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("INSERT into ARTICULOS (Codigo , Nombre , Descripcion , IdMarca , IdCategoria , ImagenUrl , Precio) values (@cod , @nombre , @desc , @idMarca , @idCateg , @url , @precio )" );
+                
+                datos.setearParametro("@cod" , art.CodigoArticulo);
+                datos.setearParametro("@nombre", art.NombreArticulo);
+                datos.setearParametro("@desc", art.DescripcionArticulo);
+                datos.setearParametro("@idMarca", art.DescripcionMarcaArticulo.IdMarca);
+                datos.setearParametro("@idCateg" , art.DescripcionCategoriaArticulo.IdCategoria);
+                datos.setearParametro("@url", art.UrlArticulo);
+                datos.setearParametro("@precio", art.PrecioArticulo);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally 
+            {
+                datos.cerrarConexion();
+            }
+         } 
     }
 }

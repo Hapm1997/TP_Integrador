@@ -80,5 +80,41 @@ namespace Presentacion
                 pictureBox1.Load("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png");
             }
         }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            CatalogoNegocio negocio = new CatalogoNegocio();
+            try
+            {
+                if(articulo == null)
+                    articulo = new Articulo();
+
+                articulo.IdArticulo = int.Parse(txtId.Text);
+                articulo.CodigoArticulo = txtCod.Text;
+                articulo.NombreArticulo = txtNombre.Text;
+                articulo.DescripcionArticulo = txtDesc.Text;
+                articulo.UrlArticulo = txtUrl.Text;
+                articulo.DescripcionCategoriaArticulo = (Categoria)cbxCateg.SelectedItem;
+                articulo.DescripcionMarcaArticulo = (Marca)cbxMarca.SelectedItem;
+                articulo.PrecioArticulo = decimal.Parse(txtPrecio.Text);
+
+                if(articulo.IdArticulo != 0)
+                {
+                    negocio.modificar(articulo);
+                    MessageBox.Show("Modificado exitosamente");
+                }
+                else
+                {
+                    negocio.agregar(articulo);
+                    MessageBox.Show("Agregado exitosamente");
+                }
+
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
     }
 }
