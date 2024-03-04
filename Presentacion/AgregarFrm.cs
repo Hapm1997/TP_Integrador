@@ -89,7 +89,7 @@ namespace Presentacion
                 if(articulo == null)
                     articulo = new Articulo();
 
-                articulo.IdArticulo = int.Parse(txtId.Text);
+                //articulo.IdArticulo = int.Parse(txtId.Text);
                 articulo.CodigoArticulo = txtCod.Text;
                 articulo.NombreArticulo = txtNombre.Text;
                 articulo.DescripcionArticulo = txtDesc.Text;
@@ -98,7 +98,7 @@ namespace Presentacion
                 articulo.DescripcionMarcaArticulo = (Marca)cbxMarca.SelectedItem;
                 articulo.PrecioArticulo = decimal.Parse(txtPrecio.Text);
 
-                if(articulo.IdArticulo != 0)
+                if (articulo.IdArticulo != 0)
                 {
                     negocio.modificar(articulo);
                     MessageBox.Show("Modificado exitosamente");

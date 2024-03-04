@@ -91,10 +91,10 @@ namespace Negocio
         }
          public void agregar (Articulo art) 
          {
-                AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("INSERT into ARTICULOS (Codigo , Nombre , Descripcion , IdMarca , IdCategoria , ImagenUrl , Precio) values (@cod , @nombre , @desc , @idMarca , @idCateg , @url , @precio )" );
+                datos.setearConsulta("INSERT into ARTICULOS (Codigo , Nombre , Descripcion , IdMarca , IdCategoria , ImagenUrl , Precio) values (@cod , @nombre , @desc , @idMarca , @idCateg , @url , @precio)" );
                 
                 datos.setearParametro("@cod" , art.CodigoArticulo);
                 datos.setearParametro("@nombre", art.NombreArticulo);
