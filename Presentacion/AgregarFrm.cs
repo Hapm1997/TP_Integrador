@@ -18,6 +18,7 @@ namespace Presentacion
         public AgregarFrm()
         {
             InitializeComponent();
+            lblId.Visible = false;
         }
 
         public AgregarFrm(Articulo art)
@@ -25,6 +26,7 @@ namespace Presentacion
             InitializeComponent();
             this.articulo = art;
             Text = "Modificar Arctículo";
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -50,7 +52,7 @@ namespace Presentacion
 
                 if (articulo != null)
                 {
-                    txtId.Text = articulo.IdArticulo.ToString();
+                    idLbl.Text=articulo.IdArticulo.ToString();
                     txtCod.Text = articulo.CodigoArticulo.ToString();
                     txtNombre.Text = articulo.NombreArticulo.ToString();
                     txtDesc.Text = articulo.DescripcionArticulo.ToString();
@@ -115,6 +117,11 @@ namespace Presentacion
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void txtUrl_TextChanged(object sender, EventArgs e)
+        {
+            cargarImagen(txtUrl.Text);
         }
     }
 }

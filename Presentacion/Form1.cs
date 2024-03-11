@@ -47,7 +47,7 @@ namespace Presentacion
         private void ocultarColumnas()
         {
             dgv1.Columns["UrlArticulo"].Visible = false;
-            dgv1.Columns["IdArticulo"].Visible = false;
+            dgv1.Columns["IdArticulo"].Visible = false;            
         }
         private void cargarImagen(string url)
         {
@@ -85,5 +85,31 @@ namespace Presentacion
             modificar.ShowDialog();
             cargar();
         }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+           CatalogoNegocio negocio = new CatalogoNegocio();
+            Articulo seleccionado;
+            try
+            {
+                DialogResult respuesta=  MessageBox.Show("¿De verdad queres eliminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(respuesta == DialogResult.Yes)
+                {
+                    seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+                    negocio.eliminar(seleccionado.IdArticulo);
+                    cargar();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.ToString());
+            }
+        }
+        //private void eliminar(bool logico = false)
+        //{
+        //    Articulo seleccionado;
+        //    seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+        //}
     }
 }

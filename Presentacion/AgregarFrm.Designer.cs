@@ -36,7 +36,6 @@
             this.lblCateg = new System.Windows.Forms.Label();
             this.lblUrl = new System.Windows.Forms.Label();
             this.lblPrecio = new System.Windows.Forms.Label();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.txtCod = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtDesc = new System.Windows.Forms.TextBox();
@@ -47,6 +46,7 @@
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.idLbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,13 +122,6 @@
             this.lblPrecio.TabIndex = 7;
             this.lblPrecio.Text = " Precio:";
             // 
-            // txtId
-            // 
-            this.txtId.Location = new System.Drawing.Point(180, 117);
-            this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(121, 20);
-            this.txtId.TabIndex = 8;
-            // 
             // txtCod
             // 
             this.txtCod.Location = new System.Drawing.Point(180, 144);
@@ -174,6 +167,7 @@
             this.txtUrl.Name = "txtUrl";
             this.txtUrl.Size = new System.Drawing.Size(121, 20);
             this.txtUrl.TabIndex = 14;
+            this.txtUrl.TextChanged += new System.EventHandler(this.txtUrl_TextChanged);
             // 
             // txtPrecio
             // 
@@ -188,7 +182,7 @@
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(75, 23);
             this.btnAgregar.TabIndex = 17;
-            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.Text = "Aceptar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
@@ -211,11 +205,20 @@
             this.pictureBox1.TabIndex = 19;
             this.pictureBox1.TabStop = false;
             // 
+            // idLbl
+            // 
+            this.idLbl.AutoSize = true;
+            this.idLbl.Location = new System.Drawing.Point(180, 120);
+            this.idLbl.Name = "idLbl";
+            this.idLbl.Size = new System.Drawing.Size(0, 13);
+            this.idLbl.TabIndex = 20;
+            // 
             // AgregarFrm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.idLbl);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnAgregar);
@@ -226,7 +229,6 @@
             this.Controls.Add(this.txtDesc);
             this.Controls.Add(this.txtNombre);
             this.Controls.Add(this.txtCod);
-            this.Controls.Add(this.txtId);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.lblUrl);
             this.Controls.Add(this.lblCateg);
@@ -254,7 +256,6 @@
         private System.Windows.Forms.Label lblCateg;
         private System.Windows.Forms.Label lblUrl;
         private System.Windows.Forms.Label lblPrecio;
-        private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtCod;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtDesc;
@@ -265,5 +266,6 @@
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label idLbl;
     }
 }
