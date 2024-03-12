@@ -106,6 +106,14 @@ namespace Presentacion
                 MessageBox.Show(ex.ToString());
             }
         }
+
+        private void btnDetalle_Click(object sender, EventArgs e)
+        {
+            Articulo seleccionado = new Articulo();
+            seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+            DetalleFrm detalle = new DetalleFrm(seleccionado);
+            detalle.ShowDialog();
+        }
         //private void eliminar(bool logico = false)
         //{
         //    Articulo seleccionado;
