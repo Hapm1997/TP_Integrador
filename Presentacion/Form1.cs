@@ -23,8 +23,32 @@ namespace Presentacion
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
             cargar();
-            //CatalogoNegocio catalogoNegocio = new CatalogoNegocio();
-            //dgv1.DataSource = catalogoNegocio.articuloLista();
+            cbxMarca.Items.Add("");
+            cbxMarca.Items.Add("Samsung");
+            cbxMarca.Items.Add("Apple");
+            cbxMarca.Items.Add("Sony");
+            cbxMarca.Items.Add("Huawei");
+            cbxMarca.Items.Add("Motorola");
+
+            cbxCategoria.Items.Add("");
+            cbxCategoria.Items.Add("Celulares");
+            cbxCategoria.Items.Add("Televisores");
+            cbxCategoria.Items.Add("Media");
+            cbxCategoria.Items.Add("Audio");
+
+            cbxMin.Items.Add("");
+            cbxMin.Items.Add(0);
+            cbxMin.Items.Add(20000);
+            cbxMin.Items.Add(40000);
+            cbxMin.Items.Add(60000);
+            cbxMin.Items.Add(80000);
+
+            cbxMax.Items.Add("");
+            cbxMax.Items.Add(20000);
+            cbxMax.Items.Add(40000);
+            cbxMax.Items.Add(60000);
+            cbxMax.Items.Add(80000);
+            cbxMax.Items.Add(100000);
         }
 
         private void cargar()
@@ -78,46 +102,103 @@ namespace Presentacion
         }
 
         private void btnModificar_Click(object sender, EventArgs e)
-        {
-            Articulo seleccionado;
-            seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
-            AgregarFrm modificar = new AgregarFrm(seleccionado);
-            modificar.ShowDialog();
-            cargar();
+        {          
+            
+            if (dgv1.CurrentRow ==null) 
+            {
+                MessageBox.Show("Seleccione un artículo");
+            }
+            else
+            {
+                Articulo seleccionado;
+                seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+                AgregarFrm modificar = new AgregarFrm(seleccionado);
+                modificar.ShowDialog();
+                cargar();
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-           CatalogoNegocio negocio = new CatalogoNegocio();
-            Articulo seleccionado;
-            try
+            if (dgv1.CurrentRow == null)
             {
-                DialogResult respuesta=  MessageBox.Show("¿De verdad queres eliminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if(respuesta == DialogResult.Yes)
+                MessageBox.Show("Seleccione un artículo");
+            }
+            else
+            {
+                CatalogoNegocio negocio = new CatalogoNegocio();
+                Articulo seleccionado;
+                try
                 {
-                    seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
-                    negocio.eliminar(seleccionado.IdArticulo);
-                    cargar();
+                    DialogResult respuesta = MessageBox.Show("¿De verdad queres eliminarlo?", "Eliminando", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+                        negocio.eliminar(seleccionado.IdArticulo);
+                        cargar();
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.ToString());
                 }
             }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.ToString());
-            }
+           
         }
 
         private void btnDetalle_Click(object sender, EventArgs e)
         {
-            Articulo seleccionado = new Articulo();
-            seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
-            DetalleFrm detalle = new DetalleFrm(seleccionado);
-            detalle.ShowDialog();
+            if(dgv1.CurrentRow == null)
+            {
+                MessageBox.Show("Seleccione un artículo");
+            }
+            else
+            {
+                Articulo seleccionado = new Articulo();
+                seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
+                DetalleFrm detalle = new DetalleFrm(seleccionado);
+                detalle.ShowDialog();
+            }
         }
-        //private void eliminar(bool logico = false)
-        //{
-        //    Articulo seleccionado;
-        //    seleccionado = (Articulo)dgv1.CurrentRow.DataBoundItem;
-        //}
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void txtxBuscar_TextChanged(object sender, EventArgs e)
+        {
+            List<Articulo> listaFiltrada;
+            string filtro = txtxBuscar.Text;
+
+            if(filtro.Length >= 3)
+            {
+                listaFiltrada = articuloLista.FindAll(x=> x.CodigoArticulo.ToUpper().Contains(filtro.ToUpper()) || x.NombreArticulo.ToUpper().Contains(filtro.ToUpper()) || x.DescripcionArticulo.ToUpper().Contains(filtro.ToUpper()));
+            }
+            else
+            {
+                listaFiltrada = articuloLista;
+            }
+
+            dgv1.DataSource = null;
+            dgv1.DataSource = listaFiltrada;
+            ocultarColumnas();
+        }
+
+        private void cbxMarca_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CatalogoNegocio negocio = new CatalogoNegocio();
+            string marca = cbxMarca.SelectedItem.ToString();
+            dgv1.DataSource = negocio.filtrarMarca(marca);
+            //MessageBox.Show(marca.ToString());
+        }
+
+        private void cbxCategoria_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CatalogoNegocio negocio = new CatalogoNegocio();
+            string categoria = cbxCategoria.SelectedItem.ToString();
+            dgv1.DataSource = negocio.filtrarCategoria(categoria);
+        }
     }
 }

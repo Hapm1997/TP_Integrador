@@ -14,9 +14,11 @@ namespace Presentacion
 {
     public partial class DetalleFrm : Form
     {
+        private Articulo art = null;
         public DetalleFrm(Articulo art)
         {
             InitializeComponent();
+            this.art = art;
         }
 
         private void DetalleFrm_Load(object sender, EventArgs e)
@@ -29,13 +31,23 @@ namespace Presentacion
             lblCategoria.Text = "";
             lblUrl.Text = "";
             lblPrecio.Text = "";
+            lblUrl.Visible = false;
+            label7.Visible = false;
 
             CategoriaNegocio categoriaNeg = new CategoriaNegocio();
             MarcaNegocio marcNegocio = new MarcaNegocio();
 
             try
             {
-                lblId.Text = 
+                lblId.Text = art.IdArticulo.ToString();
+                lblCod.Text = art.CodigoArticulo.ToString();
+                lblNombre.Text = art.NombreArticulo.ToString();
+                lblDesc.Text = art.DescripcionArticulo.ToString();
+                lblMarca.Text = art.DescripcionMarcaArticulo.DescripcionMarca.ToString();
+                lblCategoria.Text = art.DescripcionCategoriaArticulo.DescripcionCategoria.ToString();
+                lblUrl.Text = art.UrlArticulo.ToString();
+                lblPrecio.Text = art.PrecioArticulo.ToString();
+                cargarImagen(lblUrl.Text);
             }
             catch (Exception ex)
             {
@@ -75,6 +87,22 @@ namespace Presentacion
             //{
             //    MessageBox.Show(ex.ToString());
             //}
+        }
+        private void cargarImagen(string imagen)
+        {
+            try
+            {
+                pictureBox1.Load(imagen);
+            }
+            catch (Exception ex)
+            {
+                pictureBox1.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+            }
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

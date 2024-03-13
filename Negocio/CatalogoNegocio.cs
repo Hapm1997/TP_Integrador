@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using Dominio;
 using System.Data.SqlTypes;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
 
 
 namespace Negocio
@@ -123,6 +124,121 @@ namespace Negocio
                 datos.setearConsulta("delete from ARTICULOS where Id = @id");
                 datos.setearParametro("@id", id);
                 datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Articulo> filtrarMarca(string marca)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                string consulta = "select A.Id , Codigo , Nombre , A.Descripcion , IdMarca , IdCategoria , M.Descripcion Marca , C.Descripcion Categoria , ImagenUrl , Precio from ARTICULOS A , CATEGORIAS C , MARCAS M where C.Id = A.IdCategoria and M.Id = A.IdMarca ";
+                if (marca == "Samsung")
+                    consulta += "and M.Descripcion like '" + marca + "'";
+                if (marca == "Apple")
+                    consulta += "and M.Descripcion like '" + marca + "'";
+                if (marca == "Sony")
+                    consulta += "and M.Descripcion like '" + marca + "'";
+                if (marca == "Huawei")
+                    consulta += "and M.Descripcion like '" + marca + "'";
+                if (marca == "Motorola")
+                    consulta += "and M.Descripcion like '" + marca + "'";
+                if (marca == "")
+                    consulta = consulta;
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.IdArticulo = (int)datos.Lector["Id"];
+                    aux.CodigoArticulo = (string)datos.Lector["Codigo"];
+                    aux.NombreArticulo = (string)datos.Lector["Nombre"];
+                    aux.DescripcionArticulo = (string)datos.Lector["Descripcion"];
+
+                    aux.DescripcionCategoriaArticulo = new Categoria();
+                    aux.DescripcionCategoriaArticulo.IdCategoria = (int)datos.Lector["IdCategoria"];
+                    aux.DescripcionCategoriaArticulo.DescripcionCategoria = (string)datos.Lector["Categoria"];
+
+                    aux.DescripcionMarcaArticulo = new Marca();
+                    aux.DescripcionMarcaArticulo.IdMarca = (int)datos.Lector["IdMarca"];
+                    aux.DescripcionMarcaArticulo.DescripcionMarca = (string)datos.Lector["Marca"];
+
+
+
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.UrlArticulo = (string)datos.Lector["ImagenUrl"];
+
+                    //aux.PrecioArticulo = (decimal)datos.Lector["Precio"];
+
+                    aux.PrecioArticulo = Math.Round(Convert.ToDecimal(datos.Lector["Precio"]), 2);
+
+                    lista.Add(aux);
+                }
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<Articulo> filtrarCategoria( string categoria)
+        {
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                string consulta = "select A.Id , Codigo , Nombre , A.Descripcion , IdMarca , IdCategoria , M.Descripcion Marca , C.Descripcion Categoria , ImagenUrl , Precio from ARTICULOS A , CATEGORIAS C , MARCAS M where C.Id = A.IdCategoria and M.Id = A.IdMarca ";
+                if (categoria == "Celulares")
+                    consulta += "and C.Descripcion like '" + categoria + "'";
+                if (categoria == "Televisores")
+                    consulta += "and C.Descripcion like '" + categoria + "'";
+                if (categoria == "Media")
+                    consulta += "and C.Descripcion like '" + categoria + "'";
+                if (categoria == "Audio")
+                    consulta += "and C.Descripcion like '" + categoria + "'";
+                if (categoria == "")
+                    consulta = consulta;
+
+                datos.setearConsulta(consulta);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    Articulo aux = new Articulo();
+                    aux.IdArticulo = (int)datos.Lector["Id"];
+                    aux.CodigoArticulo = (string)datos.Lector["Codigo"];
+                    aux.NombreArticulo = (string)datos.Lector["Nombre"];
+                    aux.DescripcionArticulo = (string)datos.Lector["Descripcion"];
+
+                    aux.DescripcionCategoriaArticulo = new Categoria();
+                    aux.DescripcionCategoriaArticulo.IdCategoria = (int)datos.Lector["IdCategoria"];
+                    aux.DescripcionCategoriaArticulo.DescripcionCategoria = (string)datos.Lector["Categoria"];
+
+                    aux.DescripcionMarcaArticulo = new Marca();
+                    aux.DescripcionMarcaArticulo.IdMarca = (int)datos.Lector["IdMarca"];
+                    aux.DescripcionMarcaArticulo.DescripcionMarca = (string)datos.Lector["Marca"];
+
+
+
+                    if (!(datos.Lector["ImagenUrl"] is DBNull))
+                        aux.UrlArticulo = (string)datos.Lector["ImagenUrl"];
+
+                    //aux.PrecioArticulo = (decimal)datos.Lector["Precio"];
+
+                    aux.PrecioArticulo = Math.Round(Convert.ToDecimal(datos.Lector["Precio"]), 2);
+
+                    lista.Add(aux);
+                }
+
+                return lista;
             }
             catch (Exception ex)
             {

@@ -77,7 +77,7 @@ namespace Presentacion
             {
                 pictureBox1.Load(imagen);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 pictureBox1.Load("https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png");
             }
@@ -122,6 +122,14 @@ namespace Presentacion
         private void txtUrl_TextChanged(object sender, EventArgs e)
         {
             cargarImagen(txtUrl.Text);
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
