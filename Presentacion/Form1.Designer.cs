@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblBuscar = new System.Windows.Forms.Label();
-            this.cbxMarca = new System.Windows.Forms.ComboBox();
+            this.cbxPri = new System.Windows.Forms.ComboBox();
             this.lblMarca = new System.Windows.Forms.Label();
             this.lblCategoria = new System.Windows.Forms.Label();
-            this.cbxCategoria = new System.Windows.Forms.ComboBox();
+            this.cbxSeg = new System.Windows.Forms.ComboBox();
             this.lblMin = new System.Windows.Forms.Label();
             this.dgv1 = new System.Windows.Forms.DataGridView();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -43,8 +43,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.lblMax = new System.Windows.Forms.Label();
-            this.cbxMin = new System.Windows.Forms.ComboBox();
-            this.cbxMax = new System.Windows.Forms.ComboBox();
+            this.cbxTer = new System.Windows.Forms.ComboBox();
+            this.cbxCua = new System.Windows.Forms.ComboBox();
             this.txtxBuscar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,15 +59,15 @@
             this.lblBuscar.TabIndex = 0;
             this.lblBuscar.Text = "Buscar Artículo";
             // 
-            // cbxMarca
+            // cbxPri
             // 
-            this.cbxMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxMarca.FormattingEnabled = true;
-            this.cbxMarca.Location = new System.Drawing.Point(63, 88);
-            this.cbxMarca.Name = "cbxMarca";
-            this.cbxMarca.Size = new System.Drawing.Size(121, 21);
-            this.cbxMarca.TabIndex = 2;
-            this.cbxMarca.SelectedIndexChanged += new System.EventHandler(this.cbxMarca_SelectedIndexChanged);
+            this.cbxPri.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxPri.FormattingEnabled = true;
+            this.cbxPri.Location = new System.Drawing.Point(63, 88);
+            this.cbxPri.Name = "cbxPri";
+            this.cbxPri.Size = new System.Drawing.Size(121, 21);
+            this.cbxPri.TabIndex = 2;
+            this.cbxPri.SelectedIndexChanged += new System.EventHandler(this.cbxPri_SelectedIndexChanged);
             // 
             // lblMarca
             // 
@@ -87,37 +87,37 @@
             this.lblCategoria.TabIndex = 3;
             this.lblCategoria.Text = "Categoria";
             // 
-            // cbxCategoria
+            // cbxSeg
             // 
-            this.cbxCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxCategoria.FormattingEnabled = true;
-            this.cbxCategoria.Location = new System.Drawing.Point(281, 88);
-            this.cbxCategoria.Name = "cbxCategoria";
-            this.cbxCategoria.Size = new System.Drawing.Size(121, 21);
-            this.cbxCategoria.TabIndex = 4;
-            this.cbxCategoria.SelectedIndexChanged += new System.EventHandler(this.cbxCategoria_SelectedIndexChanged);
+            this.cbxSeg.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxSeg.FormattingEnabled = true;
+            this.cbxSeg.Location = new System.Drawing.Point(281, 88);
+            this.cbxSeg.Name = "cbxSeg";
+            this.cbxSeg.Size = new System.Drawing.Size(121, 21);
+            this.cbxSeg.TabIndex = 4;
+            this.cbxSeg.SelectedIndexChanged += new System.EventHandler(this.cbxSeg_SelectedIndexChanged);
             // 
             // lblMin
             // 
             this.lblMin.AutoSize = true;
             this.lblMin.Location = new System.Drawing.Point(443, 91);
             this.lblMin.Name = "lblMin";
-            this.lblMin.Size = new System.Drawing.Size(75, 13);
+            this.lblMin.Size = new System.Drawing.Size(37, 13);
             this.lblMin.TabIndex = 5;
-            this.lblMin.Text = "Precio Mínimo";
+            this.lblMin.Text = "Precio";
             // 
             // dgv1
             // 
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.NullValue = null;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv1.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.NullValue = null;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv1.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgv1.Location = new System.Drawing.Point(23, 121);
             this.dgv1.Name = "dgv1";
             this.dgv1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -193,25 +193,25 @@
             this.lblMax.TabIndex = 13;
             this.lblMax.Text = "Precio Máximo";
             // 
-            // cbxMin
+            // cbxTer
             // 
-            this.cbxMin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxMin.FormatString = "C2";
-            this.cbxMin.FormattingEnabled = true;
-            this.cbxMin.Location = new System.Drawing.Point(525, 87);
-            this.cbxMin.Name = "cbxMin";
-            this.cbxMin.Size = new System.Drawing.Size(121, 21);
-            this.cbxMin.TabIndex = 14;
+            this.cbxTer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxTer.FormatString = "C2";
+            this.cbxTer.FormattingEnabled = true;
+            this.cbxTer.Location = new System.Drawing.Point(525, 87);
+            this.cbxTer.Name = "cbxTer";
+            this.cbxTer.Size = new System.Drawing.Size(121, 21);
+            this.cbxTer.TabIndex = 14;
             // 
-            // cbxMax
+            // cbxCua
             // 
-            this.cbxMax.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxMax.FormatString = "C2";
-            this.cbxMax.FormattingEnabled = true;
-            this.cbxMax.Location = new System.Drawing.Point(769, 91);
-            this.cbxMax.Name = "cbxMax";
-            this.cbxMax.Size = new System.Drawing.Size(121, 21);
-            this.cbxMax.TabIndex = 15;
+            this.cbxCua.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxCua.FormatString = "C2";
+            this.cbxCua.FormattingEnabled = true;
+            this.cbxCua.Location = new System.Drawing.Point(769, 91);
+            this.cbxCua.Name = "cbxCua";
+            this.cbxCua.Size = new System.Drawing.Size(121, 21);
+            this.cbxCua.TabIndex = 15;
             // 
             // txtxBuscar
             // 
@@ -227,8 +227,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 552);
             this.Controls.Add(this.txtxBuscar);
-            this.Controls.Add(this.cbxMax);
-            this.Controls.Add(this.cbxMin);
+            this.Controls.Add(this.cbxCua);
+            this.Controls.Add(this.cbxTer);
             this.Controls.Add(this.lblMax);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.pictureBox1);
@@ -238,10 +238,10 @@
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.dgv1);
             this.Controls.Add(this.lblMin);
-            this.Controls.Add(this.cbxCategoria);
+            this.Controls.Add(this.cbxSeg);
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.lblMarca);
-            this.Controls.Add(this.cbxMarca);
+            this.Controls.Add(this.cbxPri);
             this.Controls.Add(this.lblBuscar);
             this.MaximizeBox = false;
             this.Name = "frmCatalogo";
@@ -258,10 +258,10 @@
         #endregion
 
         private System.Windows.Forms.Label lblBuscar;
-        private System.Windows.Forms.ComboBox cbxMarca;
+        private System.Windows.Forms.ComboBox cbxPri;
         private System.Windows.Forms.Label lblMarca;
         private System.Windows.Forms.Label lblCategoria;
-        private System.Windows.Forms.ComboBox cbxCategoria;
+        private System.Windows.Forms.ComboBox cbxSeg;
         private System.Windows.Forms.Label lblMin;
         private System.Windows.Forms.DataGridView dgv1;
         private System.Windows.Forms.Button btnAgregar;
@@ -271,8 +271,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Label lblMax;
-        private System.Windows.Forms.ComboBox cbxMin;
-        private System.Windows.Forms.ComboBox cbxMax;
+        private System.Windows.Forms.ComboBox cbxTer;
+        private System.Windows.Forms.ComboBox cbxCua;
         private System.Windows.Forms.TextBox txtxBuscar;
     }
 }

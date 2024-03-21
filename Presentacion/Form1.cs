@@ -23,32 +23,15 @@ namespace Presentacion
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
             cargar();
-            cbxMarca.Items.Add("");
-            cbxMarca.Items.Add("Samsung");
-            cbxMarca.Items.Add("Apple");
-            cbxMarca.Items.Add("Sony");
-            cbxMarca.Items.Add("Huawei");
-            cbxMarca.Items.Add("Motorola");
 
-            cbxCategoria.Items.Add("");
-            cbxCategoria.Items.Add("Celulares");
-            cbxCategoria.Items.Add("Televisores");
-            cbxCategoria.Items.Add("Media");
-            cbxCategoria.Items.Add("Audio");
-
-            cbxMin.Items.Add("");
-            cbxMin.Items.Add(0);
-            cbxMin.Items.Add(20000);
-            cbxMin.Items.Add(40000);
-            cbxMin.Items.Add(60000);
-            cbxMin.Items.Add(80000);
-
-            cbxMax.Items.Add("");
-            cbxMax.Items.Add(20000);
-            cbxMax.Items.Add(40000);
-            cbxMax.Items.Add(60000);
-            cbxMax.Items.Add(80000);
-            cbxMax.Items.Add(100000);
+            cbxPri.Items.Add("Categoria");
+            cbxPri.Items.Add("Marca");
+            cbxPri.Items.Add("Precio");
+            
+            cbxTer.Visible = false;
+            cbxCua.Visible = false;
+            lblMin.Visible = false;
+            lblMax.Visible = false;
         }
 
         private void cargar()
@@ -186,19 +169,61 @@ namespace Presentacion
             ocultarColumnas();
         }
 
-        private void cbxMarca_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbxPri_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CatalogoNegocio negocio = new CatalogoNegocio();
-            string marca = cbxMarca.SelectedItem.ToString();
-            dgv1.DataSource = negocio.filtrarMarca(marca);
-            //MessageBox.Show(marca.ToString());
+            if(cbxPri.SelectedIndex != 2)
+            {
+                cbxTer.Visible = false;
+                lblMin.Visible = false;
+            }
+            if(cbxPri.SelectedIndex == 0)
+            {
+                cbxSeg.Items.Clear();
+                cbxSeg.Items.Add("");
+                cbxSeg.Items.Add("Celulares");
+                cbxSeg.Items.Add("Televisores");
+                cbxSeg.Items.Add("Media");
+                cbxSeg.Items.Add("Audio");
+            }
+            if(cbxPri.SelectedIndex == 1)
+            {
+                cbxSeg.Items.Clear();
+                cbxSeg.Items.Add("");
+                cbxSeg.Items.Add("Samsung");
+                cbxSeg.Items.Add("Apple");
+                cbxSeg.Items.Add("Sony");
+                cbxSeg.Items.Add("Huawei");
+                cbxSeg.Items.Add("Motorola");
+            }
+            if (cbxPri.SelectedIndex == 2)
+            {
+                cbxSeg.Items.Clear();
+                cbxSeg.Items.Add("Mayor a");
+                cbxSeg.Items.Add("Menor a");
+                cbxTer.Visible = true;
+                lblMin.Visible= true;
+                cbxTer.Items.Clear();
+                cbxTer.Items.Add("");
+                cbxTer.Items.Add(20000);
+                cbxTer.Items.Add(40000);
+                cbxTer.Items.Add(60000);
+                cbxTer.Items.Add(80000);
+            }
+            dgv1.DataSource = articuloLista;
         }
 
-        private void cbxCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            CatalogoNegocio negocio = new CatalogoNegocio();
-            string categoria = cbxCategoria.SelectedItem.ToString();
-            dgv1.DataSource = negocio.filtrarCategoria(categoria);
+        private void cbxSeg_SelectedIndexChanged(object sender, EventArgs e)
+        {            
+            try
+            {
+                CatalogoNegocio negocio = new CatalogoNegocio();
+                string criterio = cbxSeg.SelectedItem.ToString();
+                dgv1.DataSource = negocio.filtrar(criterio);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
     }
 }
