@@ -96,7 +96,7 @@ namespace Presentacion
             }
             catch (Exception ex)
             {
-                pictureBox1.Load("https://efectocolibri.com/wp-content/uploads/2021/01/placeholder.png");
+                pictureBox1.Load("https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ=");
             }
         }
 

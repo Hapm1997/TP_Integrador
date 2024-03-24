@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.cbxPri = new System.Windows.Forms.ComboBox();
             this.lblMarca = new System.Windows.Forms.Label();
@@ -46,6 +46,7 @@
             this.cbxTer = new System.Windows.Forms.ComboBox();
             this.cbxCua = new System.Windows.Forms.ComboBox();
             this.txtxBuscar = new System.Windows.Forms.TextBox();
+            this.btnLimp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgv1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -74,18 +75,18 @@
             this.lblMarca.AutoSize = true;
             this.lblMarca.Location = new System.Drawing.Point(20, 91);
             this.lblMarca.Name = "lblMarca";
-            this.lblMarca.Size = new System.Drawing.Size(37, 13);
+            this.lblMarca.Size = new System.Drawing.Size(38, 13);
             this.lblMarca.TabIndex = 1;
-            this.lblMarca.Text = "Marca";
+            this.lblMarca.Text = "Filtro 1";
             // 
             // lblCategoria
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Location = new System.Drawing.Point(223, 91);
             this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(52, 13);
+            this.lblCategoria.Size = new System.Drawing.Size(38, 13);
             this.lblCategoria.TabIndex = 3;
-            this.lblCategoria.Text = "Categoria";
+            this.lblCategoria.Text = "Filtro 2";
             // 
             // cbxSeg
             // 
@@ -109,19 +110,19 @@
             // dgv1
             // 
             this.dgv1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.NullValue = null;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv1.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv1.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgv1.Location = new System.Drawing.Point(23, 121);
             this.dgv1.Name = "dgv1";
             this.dgv1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv1.Size = new System.Drawing.Size(640, 260);
+            this.dgv1.Size = new System.Drawing.Size(648, 260);
             this.dgv1.TabIndex = 7;
             this.dgv1.SelectionChanged += new System.EventHandler(this.dgv1_SelectionChanged);
             // 
@@ -202,6 +203,7 @@
             this.cbxTer.Name = "cbxTer";
             this.cbxTer.Size = new System.Drawing.Size(121, 21);
             this.cbxTer.TabIndex = 14;
+            this.cbxTer.SelectedIndexChanged += new System.EventHandler(this.cbxTer_SelectedIndexChanged);
             // 
             // cbxCua
             // 
@@ -221,11 +223,22 @@
             this.txtxBuscar.TabIndex = 16;
             this.txtxBuscar.TextChanged += new System.EventHandler(this.txtxBuscar_TextChanged);
             // 
+            // btnLimp
+            // 
+            this.btnLimp.Location = new System.Drawing.Point(575, 34);
+            this.btnLimp.Name = "btnLimp";
+            this.btnLimp.Size = new System.Drawing.Size(88, 23);
+            this.btnLimp.TabIndex = 17;
+            this.btnLimp.Text = "Limpiar Filtros";
+            this.btnLimp.UseVisualStyleBackColor = true;
+            this.btnLimp.Click += new System.EventHandler(this.btnLimp_Click);
+            // 
             // frmCatalogo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(961, 552);
+            this.Controls.Add(this.btnLimp);
             this.Controls.Add(this.txtxBuscar);
             this.Controls.Add(this.cbxCua);
             this.Controls.Add(this.cbxTer);
@@ -274,6 +287,7 @@
         private System.Windows.Forms.ComboBox cbxTer;
         private System.Windows.Forms.ComboBox cbxCua;
         private System.Windows.Forms.TextBox txtxBuscar;
+        private System.Windows.Forms.Button btnLimp;
     }
 }
 

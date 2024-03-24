@@ -23,11 +23,19 @@ namespace Presentacion
         private void frmCatalogo_Load(object sender, EventArgs e)
         {
             cargar();
-
+            cbxPri.Items.Add("");
             cbxPri.Items.Add("Categoria");
             cbxPri.Items.Add("Marca");
             cbxPri.Items.Add("Precio");
-            
+            cbxPri.SelectedIndex = 0;
+            cbxSeg.Items.Add("");
+            cbxSeg.SelectedIndex = 0;
+            cbxTer.Items.Add("");
+            cbxTer.SelectedIndex = 0;
+            //lblMarca.Visible = false;
+            //cbxPri.Visible = false;
+            //lblCategoria.Visible = false;
+            //cbxSeg.Visible = false;
             cbxTer.Visible = false;
             cbxCua.Visible = false;
             lblMin.Visible = false;
@@ -152,6 +160,25 @@ namespace Presentacion
 
         private void txtxBuscar_TextChanged(object sender, EventArgs e)
         {
+            if(txtxBuscar.Text != "")
+            {
+                cbxPri.Visible = false;
+                lblMarca.Visible = false;
+                cbxSeg.Visible = false;
+                lblCategoria.Visible = false;
+                cbxTer.Visible = false;
+                lblMin.Visible = false;
+            }
+            else
+            {
+                cbxPri.Visible = true;
+                lblMarca.Visible = true;
+                lblCategoria.Visible = true;
+                cbxSeg.Visible = true;
+                cbxPri.SelectedIndex = 0;
+                cbxSeg.SelectedIndex = 0;
+                cbxTer.SelectedIndex = 0;
+            }
             List<Articulo> listaFiltrada;
             string filtro = txtxBuscar.Text;
 
@@ -171,12 +198,12 @@ namespace Presentacion
 
         private void cbxPri_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(cbxPri.SelectedIndex != 2)
+            if(cbxPri.SelectedIndex != 3)
             {
                 cbxTer.Visible = false;
                 lblMin.Visible = false;
             }
-            if(cbxPri.SelectedIndex == 0)
+            if(cbxPri.SelectedIndex == 1)
             {
                 cbxSeg.Items.Clear();
                 cbxSeg.Items.Add("");
@@ -185,7 +212,7 @@ namespace Presentacion
                 cbxSeg.Items.Add("Media");
                 cbxSeg.Items.Add("Audio");
             }
-            if(cbxPri.SelectedIndex == 1)
+            if(cbxPri.SelectedIndex == 2)
             {
                 cbxSeg.Items.Clear();
                 cbxSeg.Items.Add("");
@@ -195,11 +222,13 @@ namespace Presentacion
                 cbxSeg.Items.Add("Huawei");
                 cbxSeg.Items.Add("Motorola");
             }
-            if (cbxPri.SelectedIndex == 2)
+            if (cbxPri.SelectedIndex == 3)
             {
                 cbxSeg.Items.Clear();
+                cbxSeg.Items.Add("");
                 cbxSeg.Items.Add("Mayor a");
                 cbxSeg.Items.Add("Menor a");
+                cbxSeg.SelectedIndex = 0;
                 cbxTer.Visible = true;
                 lblMin.Visible= true;
                 cbxTer.Items.Clear();
@@ -208,22 +237,50 @@ namespace Presentacion
                 cbxTer.Items.Add(40000);
                 cbxTer.Items.Add(60000);
                 cbxTer.Items.Add(80000);
+                cbxTer.SelectedIndex = 0;
             }
             dgv1.DataSource = articuloLista;
         }
 
         private void cbxSeg_SelectedIndexChanged(object sender, EventArgs e)
-        {            
+        {
             try
             {
                 CatalogoNegocio negocio = new CatalogoNegocio();
                 string criterio = cbxSeg.SelectedItem.ToString();
-                dgv1.DataSource = negocio.filtrar(criterio);
+                int precio = cbxTer.SelectedIndex;
+                string condicion = cbxSeg.SelectedItem.ToString();
+                dgv1.DataSource = negocio.filtrar(criterio, precio, condicion);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private void cbxTer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CatalogoNegocio negocio = new CatalogoNegocio();
+                string criterio = cbxSeg.SelectedItem.ToString();
+                int precio = cbxTer.SelectedIndex;
+                string condicion = cbxSeg.SelectedItem.ToString();
+                dgv1.DataSource = negocio.filtrar(criterio, precio, condicion);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void btnLimp_Click(object sender, EventArgs e)
+        {
+            txtxBuscar.Text = "";
+            cbxPri.SelectedIndex = 0;
+            cbxSeg.SelectedIndex = 0;
+            cbxTer.SelectedIndex = 0;
+            dgv1.DataSource = articuloLista;
         }
     }
 }

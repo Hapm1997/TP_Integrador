@@ -131,7 +131,7 @@ namespace Negocio
             }
         }
 
-        public List<Articulo> filtrar(string criterio)
+        public List<Articulo> filtrar(string criterio , int precio , string condicion)
         {
             List<Articulo> lista = new List<Articulo>();
             AccesoDatos datos = new AccesoDatos();
@@ -156,6 +156,34 @@ namespace Negocio
                     consulta += "and C.Descripcion like '" + criterio + "'";
                 if (criterio == "Audio")
                     consulta += "and C.Descripcion like '" + criterio + "'";
+
+                if (condicion == "Mayor a")
+                {
+                    if (precio == 0)
+                        consulta = consulta;
+                    if (precio == 1)
+                        consulta += "and A.Precio >= 20000";
+                    if (precio == 2)
+                        consulta += "and A.Precio >= 40000";
+                    if (precio == 3)
+                        consulta += "and A.Precio >= 60000";
+                    if (precio == 4)
+                        consulta += "and A.Precio >= 80000";
+                }
+                if (condicion == "Menor a")
+                {
+                    if (precio == 0)
+                        consulta = consulta;
+                    if (precio == 1)
+                        consulta += "and Precio <= 20000";
+                    if (precio == 2)
+                        consulta += "and Precio <= 40000";
+                    if (precio == 3)
+                        consulta += "and Precio <= 60000";
+                    if (precio == 4)
+                        consulta += "and Precio <= 80000";
+                }
+
                 if (criterio == "")
                     consulta = consulta;
 
